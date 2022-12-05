@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<meta charset="UTF-8">
+	
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
+	<title>Pizze</title>
+
+	</head>
+	<body>
+	 <div class="container py-5 text-center">
+	<h1 class="text-uppercase">Pizza Update</h1>
+	<form method="POST" action="/pizza/store" th:object="${pizza}">
+		<input type="number" name="id" th:field="*{id}" style="display:none">
+		<label>Nome</label><br>
+		<!--th:field aggancia le proprietà agli input corrispondenti-->
+		<input type="text" name="name" th:field="*{nome}">
+		<br>
+		<label>Descrizione</label><br>
+		<textarea name="description" th:field="*{descrizione}"></textarea>
+		<br>
+		<label>Prezzo</label><br>
+		<input type="number" name="price" th:field="*{prezzo}">
+		<br>
+		<button class="btn btn-dark mt-3" type="submit" value="UPDATE">Aggiorna</button>
+	</form>
+	</div>	
+</body>
+
+</html>
+
+

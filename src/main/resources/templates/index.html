@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<meta charset="UTF-8">
+	 <!-- Bootstrap CSS -->
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
+	<title>Pizze</title>
+
+	</head>
+	<body>
+	 <div class="container-fluid py-5 text-center ">
+	<h1>Pizze</h1>
+	<div class="d-flex justify-content-center py-3">
+	<a th:href="@{/pizza/create}" class="btn btn-danger text-uppercase mr-5">Create New Pizza</a>
+	</div>
+	
+	<table class="table ">
+		<tr>
+			<th>Nome</th>
+			<th>Descrizione</th>
+			<th>Prezzo</th>
+			<th>Azioni</th>
+		</tr>
+		<tr th:each="pizza : ${pizzas}" th:object="${pizza}">
+			<td th:text="*{nome}"></td>
+			<td th:text="*{descrizione}"></td>
+			<td th:text="*{prezzo}"></td>
+			<td>
+				<a th:href="@{/pizza/{id}(id=${pizza.id})}" class="btn btn-success text-uppercase">show</a>
+					<a th:href="@{/pizza/update/{id}(id=${pizza.id})}" class="btn btn-primary text-uppercase">update</a>
+				<a th:href="@{/pizza/delete/{id} (id=*{id})}" class="btn btn-danger text-uppercase">delete</a>
+			</td>
+		</tr>
+	</table>
+	</div>
+
+	</body>
+</html>
