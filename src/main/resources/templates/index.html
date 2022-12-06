@@ -8,18 +8,20 @@
 
 	</head>
 	<body>
-	 <div class="container-fluid py-5 text-center ">
-	<h1>Pizze</h1>
-	<div class="d-flex justify-content-center py-3">
-	<a th:href="@{/pizza/create}" class="btn btn-danger text-uppercase mr-5">Create New Pizza</a>
-	</div>
+	<header th:insert="frag :: header-nav"></header>
 	
+	<main>
+
+	<div class="container-fluid p-3 text-center ">
+		<div class="d-flex justify-content-end  me-5">
+			<a th:href="@{/pizza/create}" class="btn btn-danger text-uppercase">Create New Pizza</a>
+		</div>	
 	<table class="table ">
 		<tr>
-			<th>Nome</th>
-			<th>Descrizione</th>
-			<th>Prezzo</th>
-			<th>Azioni</th>
+			<th scope="col">Nome</th>
+		 	<th scope="col">Descrizione</th>
+			<th scope="col">Prezzo</th>
+			<th scope="col">Azioni</th>
 		</tr>
 		<tr th:each="pizza : ${pizzas}" th:object="${pizza}">
 			<td th:text="*{nome}"></td>
@@ -27,12 +29,12 @@
 			<td th:text="*{prezzo}"></td>
 			<td>
 				<a th:href="@{/pizza/{id}(id=${pizza.id})}" class="btn btn-success text-uppercase">show</a>
-					<a th:href="@{/pizza/update/{id}(id=${pizza.id})}" class="btn btn-primary text-uppercase">update</a>
-				<a th:href="@{/pizza/delete/{id} (id=*{id})}" class="btn btn-danger text-uppercase">delete</a>
+				<a th:href="@{/pizza/update/{id}(id=${pizza.id})}" class="btn btn-primary btn-small text-uppercase">update</a>
+				<a th:href="@{/pizza/delete/{id} (id=*{id})}" class="btn btn-danger btn-small text-uppercase">delete</a>
 			</td>
 		</tr>
 	</table>
 	</div>
-
+	</main>
 	</body>
 </html>

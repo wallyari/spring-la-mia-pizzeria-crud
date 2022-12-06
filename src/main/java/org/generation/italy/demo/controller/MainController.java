@@ -24,7 +24,7 @@ public class MainController {
 	private PizzaService pizzaService;
 	
 	
-@GetMapping("/")
+	@GetMapping("/")
 	public String index(Model model) {
 	
 	List<Pizza> pizzas = pizzaService.findAll();
