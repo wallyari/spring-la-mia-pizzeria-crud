@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
  <!-- Bootstrap CSS -->
 <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
-<title>Pizza</title>
+<title>Drink</title>
 </head>
-<body th:object="${pizza}" >
+<body th:object="${drink}" >
 	<header th:insert="~{frag :: header-nav}"></header>
 	<main>
 	 	<div class="container py-5 text-center">
-      		<h3 class="mb-3 text-uppercase">Specifiche Pizza</h3>
+      		<h3 class="mb-3 text-uppercase">Specifiche Drink</h3>
       		<div class="card text-center">
        		<div class="card-header">Nome: [[*{nome}]]</div>
         	<div class="card-body">

@@ -36,7 +36,7 @@ public class MainController {
 	@GetMapping("/pizza/{id}")
 	public String getPizza(@PathVariable("id") int id, Model model) {
 		
-		Optional <Pizza> optPizza = pizzaService.findPizzaById(id);
+		Optional <Pizza> optPizza = pizzaService.getPizzaById(id);
 		if(optPizza.isEmpty()) {
 			System.err.println("Pizza non presente con id: " + id);
 		}
@@ -66,7 +66,7 @@ public class MainController {
 	@GetMapping ("/pizza/update/{id}")
 	public String editPizza(@PathVariable("id") int id, Model model) {
 		
-		Optional <Pizza> optPizza = pizzaService.findPizzaById(id);
+		Optional <Pizza> optPizza = pizzaService.getPizzaById(id);
 		if(optPizza.isEmpty()) {
 			System.err.println("Pizza non presente con id: " + id);
 		}
@@ -87,10 +87,10 @@ public class MainController {
 	@GetMapping("/pizza/delete/{id}")
 	public String deletePizza(@PathVariable("id") int id) {
 		
-		Optional<Pizza> optPizza = pizzaService.findPizzaById(id);
+		Optional<Pizza> optPizza = pizzaService.getPizzaById(id);
 		Pizza pizza = optPizza.get();
 		
-		pizzaService.delete(pizza);
+		pizzaService.deletePizzaById(pizza);
 		
 		return "redirect:/";
 	}

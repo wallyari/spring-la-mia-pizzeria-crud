@@ -23,11 +23,11 @@ public class PizzaService {
 		return pizzaRepo.findAll();
 	}
 	
-	public Optional<Pizza> findPizzaById(int id) {
+	public Optional<Pizza> getPizzaById(int id) {
 		return pizzaRepo.findById(id);
 		
 	}
-	public void delete(Pizza pizza) {
+	public void deletePizzaById(Pizza pizza) {
 		pizzaRepo.delete(pizza);
 	}
 	
