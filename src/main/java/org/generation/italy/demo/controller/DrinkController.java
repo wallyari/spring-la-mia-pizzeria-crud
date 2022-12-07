@@ -61,13 +61,28 @@ public class DrinkController {
 	public String storeDrink(@Valid @ModelAttribute("drink") Drink drink, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
  		if(bindingResult.hasErrors()) {
- 			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+ 			
+ 			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());			
  			return "redirect:/drink/create";
  		}
 
-		drinkService.save(drink);
+ 		try {			
+ 			drinkService.save(drink);
+ 		
+ 		} catch (Exception e) {
+ 			
+ 			final String msg = e.getMessage(); 			
+ 			System.err.println(msg);			
+ 			redirectAttributes.addFlashAttribute("catchError", msg);			
+ 			return "redirect:/drink/create";
+ 		}
+		
 		return "redirect:/drink";
 	}
+	
+	
+	
+	
 	@GetMapping("/update/{id}")
 	public String getEditDrink(@PathVariable("id") int id, Model model) {
 		
@@ -81,15 +96,27 @@ public class DrinkController {
 	@PostMapping("/store")
 	public String updateDrink(@Valid @ModelAttribute("drink") Drink drink,  BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
- 		if(bindingResult.hasErrors()) {
- 			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
- 			return "redirect:/drink/update/" + drink.getId();
+if(bindingResult.hasErrors()) {
+ 			
+ 			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());			
+ 			return "redirect:/drink/create";
  		}
 
+ 		try { 			
+ 			drinkService.save(drink);
+ 		
+ 		} catch (Exception e) {			
+ 			
+ 			final String msg = e.getMessage();			
+ 			System.err.println(msg); 			
+ 			redirectAttributes.addFlashAttribute("catchError", msg);			
+ 			return "redirect:/drink/create";
+ 		}	
 		
-		drinkService.save(drink);
-		return "redirect:/drink";
+ 		return "redirect:/drink";
 	}
+	
+	
 	@GetMapping("/delete/{id}")
 	public String deleteDrink(@PathVariable("id") int id, Model model) {
 		

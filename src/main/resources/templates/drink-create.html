@@ -11,14 +11,8 @@
 			<div class="d-flex justify-content-center p-3">
 				<h3>Create</h3>
 			</div>
-				<div th:if="${errors}" class="col-sm-12 my-auto alert alert-danger" role="alert">
- 				<h3 class="text-danger">Errors:</h3>
- 				<ul>
- 					<li th:each="error : ${errors}" th:object="${error}">
- 						[[*{defaultMessage}]]
- 					</li>
- 				</ul>
- 				</div>	 
+				<div th:insert="~{frag :: error}"></div>
+				 
 	  		<form class="container border mt-3 p-3" 
 	 			  method="POST" 
 	 			  action="/drink/create" 

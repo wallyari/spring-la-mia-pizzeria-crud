@@ -60,15 +60,27 @@ public class MainController {
 
  	public String storePizza(@Valid @ModelAttribute("pizza") Pizza pizza, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
- 		if(bindingResult.hasErrors()) {
- 			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
- 			return "redirect:/pizza/create";
+		if(bindingResult.hasErrors()) {
+ 			
+ 			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());			
+ 			return "redirect:/drink/create";
  		}
 
- 		pizzaService.save(pizza);
- 		return "redirect:/";
+ 		try {			
+ 			pizzaService.save(pizza);
+ 		
+ 		} catch (Exception e) {
+ 			
+ 			final String msg = e.getMessage(); 			
+ 			System.err.println(msg);			
+ 			redirectAttributes.addFlashAttribute("catchError", msg);			
+ 			return "redirect:/pizza/create";
+ 		}
+		
+		return "redirect:/";
 	}
 
+	
 	@GetMapping ("/pizza/update/{id}")
 	public String getEditPizza(@PathVariable("id") int id, Model model) {
 		
@@ -85,12 +97,23 @@ public class MainController {
 	@PostMapping("/pizza/store")
 	public String updatePizza(@Valid @ModelAttribute("pizza") Pizza pizza,  BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
- 		if(bindingResult.hasErrors()) {
- 			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
- 			return "redirect:/pizza/update/" + pizza.getId();
+		if(bindingResult.hasErrors()) {
+ 			
+ 			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());			
+ 			return "redirect:/drink/create";
  		}
-	
-		pizzaService.save(pizza);
+
+ 		try {			
+ 			pizzaService.save(pizza);
+ 		
+ 		} catch (Exception e) {
+ 			
+ 			final String msg = e.getMessage(); 			
+ 			System.err.println(msg);			
+ 			redirectAttributes.addFlashAttribute("catchError", msg);			
+ 			return "redirect:/pizza/create";
+ 		}
+		
 		return "redirect:/";
 	}
 	
