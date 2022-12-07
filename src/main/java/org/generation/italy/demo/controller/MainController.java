@@ -2,6 +2,7 @@ package org.generation.italy.demo.controller;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.generation.italy.demo.pojo.Pizza;
 import org.generation.italy.demo.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.validation.Valid;
@@ -127,5 +129,18 @@ public class MainController {
 		
 		return "redirect:/";
 	}
+	
+	@GetMapping("/pizza/search")
+	public String getSearchPizzaByName(Model model,
+			@RequestParam(name = "q", required=false)String query) {
+				
+			List<Pizza> pizzas = query == null
+			? pizzaService.findAll()
+			: pizzaService.findByNome(query);
+			
+			model.addAttribute("pizzas", pizzas);
+			model.addAttribute("query", query);
+			return "pizza-search";
+		}
 
 }
