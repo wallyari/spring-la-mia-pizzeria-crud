@@ -16,7 +16,7 @@
 		<div class="d-flex justify-content-end  me-5">
 			<a th:href="@{/drink/create}" class="btn btn-danger text-uppercase">Create New Drink</a>
 		</div>	
-	<table class="table ">
+	<table th:if="${!drinks.isEmpty()}" class="table">
 		<tr>
 			<th scope="col">Nome</th>
 		 	<th scope="col">Descrizione</th>
@@ -34,6 +34,7 @@
 			</td>
 		</tr>
 	</table>
+	<h2 th:if="${drinks.isEmpty()}" class="text-uppercase">Non ci sono drink al momento</h2>
 	</div>
 	</main>
 	</body>

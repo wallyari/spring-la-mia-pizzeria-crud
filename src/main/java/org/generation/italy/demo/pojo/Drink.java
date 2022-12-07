@@ -1,6 +1,6 @@
 package org.generation.italy.demo.pojo;
 
-import jakarta.annotation.Nullable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,16 +20,15 @@ public class Drink {
  	@GeneratedValue(strategy = GenerationType.IDENTITY)
  	private int id;
 
- 	@NotNull
- 	@NotEmpty(message = "Il campo nome non può essere vuoto")
+
+ 	@NotEmpty(message = "Il campo nome non può vuoto")
  	@Column(length = 50, unique = true)
  	private String nome;
 
  	@Lob
- 	@Nullable
  	private String descrizione;
 
- 	@NotNull
+ 	@NotNull(message = "Il campo prezzo non può essere vuoto")
  	@Min(value=1)
  	private Integer prezzo;
  	
