@@ -12,8 +12,8 @@
 	
 	<main>
 
-	<div class="container-fluid p-3 text-center ">
-		<div class="d-flex justify-content-end  me-5">
+	<div class="container p-3 text-center">
+		<div class="d-flex col-12 justify-content-center mb-5">
 			<a th:href="@{/drink/create}" class="btn btn-danger text-uppercase">Create New Drink</a>
 		</div>	
 	<table th:if="${!drinks.isEmpty()}" class="table">
